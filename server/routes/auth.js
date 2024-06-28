@@ -105,4 +105,8 @@ router.get("/me", auth, async (req, res) => {
     return res.status(200).json({ ...req.user._doc});
   }); 
 
+router.get("/protected",auth,(req,res) =>{
+    return res.status(200).json({user: req.user});
+});  
+
 module.exports =router

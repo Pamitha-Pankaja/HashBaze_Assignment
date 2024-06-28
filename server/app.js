@@ -12,11 +12,6 @@ app.use(express.json())
 app.use(morgan("tiny"))
 app.use(require("cors")())
 
-//routes
-app.get("/api/protected",auth,(req,res) =>{
-    return res.status(200).json({user: req.user});
-});
-
 app.use("/api/" , require("./routes/auth"))
 
 //server config
