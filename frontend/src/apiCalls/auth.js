@@ -35,4 +35,26 @@ const register = async (name, email, password) => {
   return await response.json();
 };
 
-export { login, register };
+//function to validate token
+const validateToken = async (token) => {
+  try {
+    const response = await fetch('http://localhost:8000/api/protected', {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error('Invalid token');
+    }
+
+    const data = await response.json();
+    return data.user;
+  } catch (error) {
+    console.error('Token validation error:', error);
+    return null;
+  }
+};
+
+export { login, register, validateToken };

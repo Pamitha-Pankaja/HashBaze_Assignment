@@ -13,7 +13,7 @@ app.use(morgan("tiny"))
 app.use(require("cors")())
 
 //routes
-app.get("/protected",auth,(req,res) =>{
+app.get("/api/protected",auth,(req,res) =>{
     return res.status(200).json({user: req.user});
 });
 
